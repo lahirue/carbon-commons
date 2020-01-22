@@ -860,6 +860,29 @@
                 <version>${carbon.commons.version}</version>
                 <type>zip</type>
             </dependency>
+
+            <dependency>
+                <groupId>org.wso2.carbon.commons</groupId>
+                <artifactId>org.wso2.carbon.logging.admin.stub</artifactId>
+                <version>${carbon.commons.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.wso2.carbon.commons</groupId>
+                <artifactId>org.wso2.carbon.logging.view.stub</artifactId>
+                <version>${carbon.commons.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.wso2.carbon.commons</groupId>
+                <artifactId>org.wso2.carbon.logging.admin.ui</artifactId>
+                <version>${carbon.commons.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.wso2.carbon.commons</groupId>
+                <artifactId>org.wso2.carbon.logging.view.ui</artifactId>
+                <version>${carbon.commons.version}</version>
+            </dependency>
+
             <dependency>
                 <groupId>org.perf4j.wso2</groupId>
                 <artifactId>perf4j</artifactId>
