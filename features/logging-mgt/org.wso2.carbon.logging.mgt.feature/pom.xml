@@ -46,7 +46,8 @@
         <dependency>
             <groupId>org.wso2.carbon.commons</groupId>
             <artifactId>org.wso2.carbon.logging.view.stub</artifactId>
-        </dependency>
+            <version>4.7.19</version>
+	</dependency>
     </dependencies>
 
     <build>

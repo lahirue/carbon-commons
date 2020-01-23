@@ -35,11 +35,13 @@
         <dependency>
             <groupId>org.wso2.carbon.commons</groupId>
             <artifactId>org.wso2.carbon.logging.admin.ui</artifactId>
-        </dependency>
-        <dependency>
+            <version>4.7.19</version>
+	</dependency>
+        <!--dependency>
             <groupId>org.wso2.carbon.commons</groupId>
             <artifactId>org.wso2.carbon.logging.view.ui</artifactId>
-        </dependency>
+	   <version>4.7.19</version>
+        </dependency-->
     </dependencies>
 
     <build>
@@ -66,7 +68,7 @@
                             </adviceFile>
                             <bundles>
                                 <bundleDef>org.wso2.carbon.commons:org.wso2.carbon.logging.admin.ui:${carbon.commons.version}</bundleDef>
-                                <bundleDef>org.wso2.carbon.commons:org.wso2.carbon.logging.view.ui:${carbon.commons.version}</bundleDef>
+                                <!--bundleDef>org.wso2.carbon.commons:org.wso2.carbon.logging.view.ui:${carbon.commons.version}</bundleDef-->
                                <bundleDef>org.wso2.carbon.commons:org.wso2.carbon.logging.admin.stub:${carbon.commons.version}</bundleDef>
                                 <bundleDef>org.wso2.carbon.commons:org.wso2.carbon.logging.view.stub:${carbon.commons.version}</bundleDef>
                             </bundles>
