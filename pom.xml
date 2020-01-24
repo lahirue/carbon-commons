@@ -27,6 +27,8 @@
         <module>service-stubs/org.wso2.carbon.throttling.agent.stub</module>
         <module>service-stubs/org.wso2.carbon.email.verification.stub</module>
         <module>service-stubs/org.wso2.carbon.tenant.common.stub</module>
+        <module>service-stubs/logging/org.wso2.carbon.logging.view.stub</module>
+
         <module>service-stubs/cluster-mgt</module>
         <!--<module>service-stubs/logging</module>-->
         <module>service-stubs/remote-tasks</module>
@@ -37,6 +39,8 @@
         <module>service-stubs/wsdl-tools</module>
         <module>service-stubs/system-statistics</module>
         <module>service-stubs/message-flows</module>
+        <module>service-stubs/logging</module>
+
 
         <!-- Components -->
 	<module>components/tenant-mgt-common</module>
@@ -85,7 +89,6 @@
         <module>features/soap-tracer</module>
         <module>features/message-flows</module>
         <module>features/tenant-mgt-common</module>
-        <module>service-stubs/logging</module>
     </modules>
 
     <scm>
@@ -845,6 +848,16 @@
             </dependency>
             <dependency>
                 <groupId>org.wso2.carbon.commons</groupId>
+                <artifactId>org.wso2.carbon.logging.view.ui</artifactId>
+                <version>${carbon.commons.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.wso2.carbon.commons</groupId>
+                <artifactId>org.wso2.carbon.logging.view.stub</artifactId>
+                <version>${carbon.commons.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.wso2.carbon.commons</groupId>
                 <artifactId>org.wso2.carbon.tenant.common.stub</artifactId>
                 <version>${carbon.commons.version}</version>
             </dependency>
@@ -860,6 +873,25 @@
                 <version>${carbon.commons.version}</version>
                 <type>zip</type>
             </dependency>
+            <dependency>
+                <groupId>org.wso2.carbon.commons</groupId>
+                <artifactId>org.wso2.carbon.logging.updater.feature</artifactId>
+                <type>zip</type>
+                <version>${carbon.commons.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.wso2.carbon.commons</groupId>
+                <artifactId>org.wso2.carbon.logging.viewer.feature</artifactId>
+                <type>zip</type>
+                <version>${carbon.commons.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.wso2.carbon.commons</groupId>
+                <artifactId>org.wso2.carbon.logging.viewer.ui.feature</artifactId>
+                <version>${carbon.commons.version}</version>
+                <type>zip</type>
+            </dependency>
+
             <dependency>
                 <groupId>org.perf4j.wso2</groupId>
                 <artifactId>perf4j</artifactId>
