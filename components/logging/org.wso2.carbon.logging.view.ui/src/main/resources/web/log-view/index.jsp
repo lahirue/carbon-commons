@@ -23,7 +23,7 @@
 <%@ page import="org.wso2.carbon.CarbonConstants"%>
 <%-- <%@ page --%>
 <!-- 	import="org.wso2.carbon.logging.view.stub.types.carbon.LogEvent"%> -->
-<%@ page import="org.wso2.carbon.logging.view.data.xsd.LogEvent"%>
+<%@ page import="org.wso2.carbon.logging.view.data.LogEvent"%>
 
 <%@ page import="org.wso2.carbon.utils.ServerConstants"%>
 <%@ page import="org.wso2.carbon.ui.CarbonUIUtil"%>

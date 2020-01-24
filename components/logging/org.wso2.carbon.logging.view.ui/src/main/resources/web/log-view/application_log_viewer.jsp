@@ -28,7 +28,7 @@
 <%@ page import="org.wso2.carbon.ui.CarbonUIMessage"%>
 <%@ page import="org.wso2.carbon.ui.CarbonUIUtil"%>
 <%@ page import="org.wso2.carbon.ui.util.CharacterEncoder" %>
-<%@ page import="org.wso2.carbon.logging.view.data.xsd.LogEvent"%>
+<%@ page import="org.wso2.carbon.logging.view.data.LogEvent"%>
 
 <%@ page import="java.text.SimpleDateFormat" %>
 <script type="text/javascript" src="js/logviewer.js"></script>
@@ -57,11 +57,7 @@
 		LogViewerClient logViewerClient;
 		LogEvent[] events = null;
 
-        try {
-			pageNumber = Integer.parseInt(pageNumberStr);
-		} catch (NumberFormatException ignored) {
-			// page number format exception
-		}
+
 		String appName;
 		String applicationNames[] = null;
 		try {
