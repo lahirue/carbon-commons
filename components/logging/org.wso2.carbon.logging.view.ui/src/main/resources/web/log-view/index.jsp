@@ -23,7 +23,6 @@
 <%@ page import="org.wso2.carbon.CarbonConstants"%>
 <%-- <%@ page --%>
 <!-- 	import="org.wso2.carbon.logging.view.stub.types.carbon.LogEvent"%> -->
-<%@ page import="org.wso2.carbon.logging.view.data.xsd.LogEvent"%>
 
 <%@ page import="org.wso2.carbon.utils.ServerConstants"%>
 <%@ page import="org.wso2.carbon.ui.CarbonUIUtil"%>
@@ -32,6 +31,7 @@
 
 <%@ page import="org.wso2.carbon.ui.CarbonUIUtil"%>
 <%@ page import="org.wso2.carbon.ui.util.CharacterEncoder" %>
+<%@ page import="org.wso2.carbon.logging.view.stub.types.carbon.LogEvent"%>
 <%@ page import="java.util.regex.Matcher"%>
 <%@ page import="java.util.regex.Pattern"%>
 <%@ page import="java.text.SimpleDateFormat" %>
