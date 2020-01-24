@@ -28,7 +28,7 @@
 <%@ page import="org.wso2.carbon.ui.CarbonUIMessage"%>
 <%@ page import="org.wso2.carbon.ui.CarbonUIUtil"%>
 <%@ page import="org.wso2.carbon.ui.util.CharacterEncoder" %>
-<%@ page import="org.wso2.carbon.logging.view.data.LogEvent"%>
+<%@ page import="org.wso2.carbon.logging.view.data.xsd.LogEvent"%>
 
 <%@ page import="java.text.SimpleDateFormat" %>
 <script type="text/javascript" src="js/logviewer.js"></script>

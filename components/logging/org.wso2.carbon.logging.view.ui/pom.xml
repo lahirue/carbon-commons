@@ -34,7 +34,6 @@
             <plugin>
                 <groupId>org.apache.felix</groupId>
                 <artifactId>maven-bundle-plugin</artifactId>
-                <version>1.4.0</version>
                 <extensions>true</extensions>
                 <configuration>
                     <instructions>
@@ -44,9 +43,12 @@
                             org.wso2.carbon.logging.view.ui.*
                         </Export-Package>
                         <Import-Package>
-                            org.wso2.carbon.logging.view.stub.*; version="${carbon.commons.imp.package.version}",
+                            org.wso2.carbon.logging.view.stub.*;
+                            version="${carbon.commons.imp.package.version}",
+                            !org.wso2.carbon.logging.view.ui.*,
                             *;resolution:=optional
                         </Import-Package>
+                        <DynamicImport-Package>*</DynamicImport-Package>
                         <!--Embed-Dependency>org.wso2.carbon.logging.view.stub;scope=compile|runtime;inline=true</Embed-Dependency-->
                         <Carbon-Component>UIBundle</Carbon-Component>
                     </instructions>
