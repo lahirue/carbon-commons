@@ -28,6 +28,8 @@
                             *;resolution:=optional
                         </Import-Package>
                         <Export-Package>
+                            !org.wso2.carbon.logging.view.internal,
+                            !org.wso2.carbon.logging.view.internal.*,
                             org.wso2.carbon.logging.view.*
                         </Export-Package>
                     </instructions>

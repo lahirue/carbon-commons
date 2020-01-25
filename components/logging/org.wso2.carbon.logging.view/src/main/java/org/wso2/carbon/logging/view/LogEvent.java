@@ -17,7 +17,7 @@
  *
  */
 
-package org.wso2.carbon.logging.view.data;
+package org.wso2.carbon.logging.view;
 
 /**
  * LogEvent Model for Log Viewer

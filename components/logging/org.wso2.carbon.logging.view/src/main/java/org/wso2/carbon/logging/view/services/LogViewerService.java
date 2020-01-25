@@ -19,7 +19,7 @@
 
 package org.wso2.carbon.logging.view.services;
 
-import org.wso2.carbon.logging.view.data.LogEvent;
+import org.wso2.carbon.logging.view.LogEvent;
 import org.wso2.carbon.logging.view.internal.DataHolder;
 
 import java.util.List;

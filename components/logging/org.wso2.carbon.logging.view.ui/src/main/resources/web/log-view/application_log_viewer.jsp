@@ -18,19 +18,16 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib uri="http://wso2.org/projects/carbon/taglibs/carbontags.jar"
 	prefix="carbon"%>
-<%@ page import="org.wso2.carbon.logging.view.ui.LogViewerClient"%>
 <%@ page import="org.apache.axis2.context.ConfigurationContext"%>
 <%@ page import="org.wso2.carbon.CarbonConstants"%>
+<%@ page import="org.wso2.carbon.logging.view.stub.types.carbon.LogEvent"%>
 <%-- <%@ page --%>
 <!-- 	import="org.wso2.carbon.logging.view.stub.types.carbon.LogEvent"%> -->
-<%@ page import="org.wso2.carbon.utils.ServerConstants"%>
-<%@ page import="org.wso2.carbon.ui.CarbonUIUtil"%>
+<%@ page import="org.wso2.carbon.logging.view.ui.LogViewerClient"%>
 <%@ page import="org.wso2.carbon.ui.CarbonUIMessage"%>
 <%@ page import="org.wso2.carbon.ui.CarbonUIUtil"%>
-<%@ page import="org.wso2.carbon.ui.util.CharacterEncoder" %>
-<%@ page import="org.wso2.carbon.logging.view.data.xsd.LogEvent"%>
+<%@ page import="org.wso2.carbon.utils.ServerConstants"%>
 
-<%@ page import="java.text.SimpleDateFormat" %>
 <script type="text/javascript" src="js/logviewer.js"></script>
 <script type="text/javascript" src="../admin/dialog/js/dialog.js"></script>
 
@@ -38,17 +35,17 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<script type="text/JavaScript">
-	function refresh(time) {
-		setTimeout("location.reload(true);", time);
-	}
-</script>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>View Application Logs</title>
+	<script type="text/JavaScript">
+        function refresh(time) {
+            setTimeout("location.reload(true);", time);
+        }
+	</script>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>View Application Logs</title>
 </head>
 <body onload="JavaScript:refresh(120000);">
-	
-	<%
+
+<%
 		String backendServerURL = CarbonUIUtil
 				.getServerURL(config.getServletContext(), session);
 		ConfigurationContext configContext = (ConfigurationContext) config.getServletContext()

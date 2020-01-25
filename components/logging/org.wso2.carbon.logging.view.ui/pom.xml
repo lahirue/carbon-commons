@@ -43,12 +43,11 @@
                             org.wso2.carbon.logging.view.ui.*
                         </Export-Package>
                         <Import-Package>
-                            org.wso2.carbon.logging.view.stub.*;
-                            version="${carbon.commons.imp.package.version}",
+                            org.wso2.carbon.logging.view.stub.*;version="${carbon.commons.imp.package.version}",
                             !org.wso2.carbon.logging.view.ui.*,
+                            javax.servlet.*;version="${imp.pkg.version.javax.servlet}",
                             *;resolution:=optional
                         </Import-Package>
-                        <DynamicImport-Package>*</DynamicImport-Package>
                         <!--Embed-Dependency>org.wso2.carbon.logging.view.stub;scope=compile|runtime;inline=true</Embed-Dependency-->
                         <Carbon-Component>UIBundle</Carbon-Component>
                     </instructions>

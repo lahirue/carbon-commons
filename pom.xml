@@ -27,10 +27,9 @@
         <module>service-stubs/org.wso2.carbon.throttling.agent.stub</module>
         <module>service-stubs/org.wso2.carbon.email.verification.stub</module>
         <module>service-stubs/org.wso2.carbon.tenant.common.stub</module>
-        <module>service-stubs/logging/org.wso2.carbon.logging.view.stub</module>
 
         <module>service-stubs/cluster-mgt</module>
-        <!--<module>service-stubs/logging</module>-->
+        <module>service-stubs/logging</module>
         <module>service-stubs/remote-tasks</module>
         <module>service-stubs/reporting</module>
         <module>service-stubs/event</module>

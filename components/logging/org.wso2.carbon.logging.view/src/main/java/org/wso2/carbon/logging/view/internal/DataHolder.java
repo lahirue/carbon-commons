@@ -19,7 +19,7 @@
 
 package org.wso2.carbon.logging.view.internal;
 
-import org.wso2.carbon.logging.view.data.LogEvent;
+import org.wso2.carbon.logging.view.LogEvent;
 import org.wso2.carbon.utils.logging.CircularBuffer;
 
 /**

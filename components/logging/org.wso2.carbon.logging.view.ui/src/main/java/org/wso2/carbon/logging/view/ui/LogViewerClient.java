@@ -21,17 +21,19 @@ import org.apache.axis2.client.ServiceClient;
 import org.apache.axis2.context.ConfigurationContext;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.wso2.carbon.logging.view.stub.LogViewerStub;
+import org.wso2.carbon.logging.view.stub.types.carbon.LogEvent;
 
 import java.rmi.RemoteException;
 
 public class LogViewerClient {
 	private static final Log log = LogFactory.getLog(LogViewerClient.class);
-	public org.wso2.carbon.logging.view.stub.LogViewerStub stub;
+	public LogViewerStub stub;
 
 	public LogViewerClient(String cookie, String backendServerURL, ConfigurationContext configCtx)
 			throws AxisFault {
 		String serviceURL = backendServerURL + "LogViewer";
-		stub = new org.wso2.carbon.logging.view.stub.LogViewerStub(configCtx, serviceURL);
+		stub = new LogViewerStub(configCtx, serviceURL);
 		ServiceClient client = stub._getServiceClient();
 		Options option = client.getOptions();
 		option.setManageSession(true);
@@ -44,7 +46,7 @@ public class LogViewerClient {
 	 * @return
 	 * @throws RemoteException
 	 */
-	public org.wso2.carbon.logging.view.data.xsd.LogEvent[] getAllRemoteSystemLogs() throws RemoteException {
+	public LogEvent[] getAllRemoteSystemLogs() throws RemoteException {
 
 		try {
 			return stub.getAllSystemLogs();
@@ -61,9 +63,9 @@ public class LogViewerClient {
 	 * @throws RemoteException
 	 */
 	@Deprecated
-	public org.wso2.carbon.logging.view.data.xsd.LogEvent[] getAllSystemLogs() throws RemoteException {
+	public LogEvent[] getAllSystemLogs() throws RemoteException {
 
-		org.wso2.carbon.logging.view.data.xsd.LogEvent[] logEvents;
+		LogEvent[] logEvents;
 		try {
 			logEvents = stub.getAllSystemLogs();
 		} catch (RemoteException e) {

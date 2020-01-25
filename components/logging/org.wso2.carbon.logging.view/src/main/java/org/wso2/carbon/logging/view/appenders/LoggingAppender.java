@@ -23,7 +23,7 @@ import org.ops4j.pax.logging.spi.PaxAppender;
 import org.ops4j.pax.logging.spi.PaxLoggingEvent;
 import org.wso2.carbon.base.ServerConfiguration;
 import org.wso2.carbon.context.CarbonContext;
-import org.wso2.carbon.logging.view.data.LogEvent;
+import org.wso2.carbon.logging.view.LogEvent;
 import org.wso2.carbon.utils.logging.CircularBuffer;
 
 import java.net.InetAddress;
