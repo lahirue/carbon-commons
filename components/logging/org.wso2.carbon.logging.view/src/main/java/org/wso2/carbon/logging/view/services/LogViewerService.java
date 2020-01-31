@@ -25,6 +25,7 @@ import org.wso2.carbon.base.MultitenantConstants;
 import org.wso2.carbon.context.CarbonContext;
 import org.wso2.carbon.logging.view.*;
 import org.wso2.carbon.logging.view.internal.DataHolder;
+import org.wso2.carbon.logging.view.provider.FileLogProvider;
 import org.wso2.carbon.logging.view.provider.api.LogFileProvider;
 import org.wso2.carbon.logging.view.util.LoggingUtil;
 import org.wso2.carbon.utils.DataPaginator;
@@ -37,7 +38,7 @@ import java.util.List;
  */
 public class LogViewerService {
 
-    private static LogFileProvider logFileProvider;
+    private static LogFileProvider logFileProvider = new FileLogProvider();
     private PaginatedLogMessageCarbon paginatedLogMessageCarbon = new PaginatedLogMessageCarbon();
 
     public PaginatedLogMessageCarbon getPaginatedLogMessageCarbon() {

@@ -42,7 +42,7 @@
 <%@ page import="java.util.TimeZone" %>
 <%@ page import="org.wso2.carbon.logging.view.stub.types.carbon.LogFileInfo" %>
 <script type="text/javascript" src="js/logviewer.js"></script>
-<script type="text/javascript" src="../admin/dialog/js/dialog.js"></script>
+<%--<script type="text/javascript" src="../admin/dialog/js/dialog.js"></script>--%>
 
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
