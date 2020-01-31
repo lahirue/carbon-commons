@@ -16,7 +16,6 @@
  * under the License.
  *
  */
-
 package org.wso2.carbon.logging.view;
 
 /**

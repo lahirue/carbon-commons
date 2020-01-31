@@ -18,15 +18,17 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib uri="http://wso2.org/projects/carbon/taglibs/carbontags.jar"
 	prefix="carbon"%>
-<%@ page import="org.wso2.carbon.logging.view.ui.LogViewerClient"%>
 <%@ page import="org.apache.axis2.context.ConfigurationContext"%>
-<%@ page import="org.wso2.carbon.ui.util.CharacterEncoder"%>
 <%@ page import="org.wso2.carbon.CarbonConstants"%>
-<%@ page import="org.wso2.carbon.logging.view.stub.types.carbon.LogMessage"%>
-<%@ page import="org.wso2.carbon.utils.ServerConstants"%>
-<%@ page import="org.wso2.carbon.ui.CarbonUIUtil"%>
-<%@ page import="org.wso2.carbon.logging.view.stub.types.carbon.PaginatedLogMessage"%>
+<%@ page import="org.wso2.carbon.logging.view.stub.types.carbon.LogMessageCarbon"%>
+<%@ page import="org.wso2.carbon.logging.view.ui.LogViewerClient"%>
 <%@ page import="org.wso2.carbon.ui.CarbonUIMessage"%>
+<%@ page import="org.wso2.carbon.ui.CarbonUIUtil"%>
+
+
+<%@ page import="org.wso2.carbon.ui.util.CharacterEncoder"%>
+<%@ page import="org.wso2.carbon.utils.ServerConstants" %>
+<%@ page import="org.wso2.carbon.logging.view.stub.types.carbon.PaginatedLogMessageCarbon" %>
 <script type="text/javascript" src="js/logviewer.js"></script>
 <script type="text/javascript" src="../admin/dialog/js/dialog.js"></script>
 <fmt:bundle basename="org.wso2.carbon.logging.view.ui.i18n.Resources">
@@ -49,8 +51,8 @@
 	String keyWordString = "";
 	String serviceName = "WSO2 Stratos Manager";
 	String tenantDomain = "";
-	LogMessage[] logMessages;
-	PaginatedLogMessage paginatedLogMsgs;
+	LogMessageCarbon[] logMessages;
+	PaginatedLogMessageCarbon paginatedLogMsgs;
 	String pageNumberStr = request.getParameter("pageNumber");
 	logFile = request.getParameter("logFile");
 	String parameter = "";
