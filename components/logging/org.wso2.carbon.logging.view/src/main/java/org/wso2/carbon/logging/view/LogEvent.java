@@ -39,6 +39,11 @@ public class LogEvent {
 
     }
 
+    public LogEvent(String message, String priority) {
+        this.message = message;
+        this.priority = priority;
+    }
+
     public String getKey() {
 
         return key;

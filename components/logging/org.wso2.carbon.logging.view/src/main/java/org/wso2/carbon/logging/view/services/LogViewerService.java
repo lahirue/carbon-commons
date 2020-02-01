@@ -19,18 +19,26 @@
 
 package org.wso2.carbon.logging.view.services;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.apache.log4j.FileAppender;
 import org.apache.log4j.Logger;
 import org.wso2.carbon.base.MultitenantConstants;
 import org.wso2.carbon.context.CarbonContext;
 import org.wso2.carbon.logging.view.*;
 import org.wso2.carbon.logging.view.internal.DataHolder;
-import org.wso2.carbon.logging.view.provider.FileLogProvider;
 import org.wso2.carbon.logging.view.provider.api.LogFileProvider;
+import org.wso2.carbon.logging.view.provider.api.LogProvider;
+import org.wso2.carbon.logging.view.util.LoggingConstants;
 import org.wso2.carbon.logging.view.util.LoggingUtil;
+import org.wso2.carbon.registry.core.RegistryConstants;
+import org.wso2.carbon.utils.CarbonUtils;
 import org.wso2.carbon.utils.DataPaginator;
 
 import javax.activation.DataHandler;
+import javax.xml.stream.XMLStreamException;
+import java.io.IOException;
+import java.lang.reflect.Constructor;
 import java.util.List;
 
 /**
@@ -38,11 +46,125 @@ import java.util.List;
  */
 public class LogViewerService {
 
-    private static LogFileProvider logFileProvider = new FileLogProvider();
+
     private PaginatedLogMessageCarbon paginatedLogMessageCarbon = new PaginatedLogMessageCarbon();
 
     public PaginatedLogMessageCarbon getPaginatedLogMessageCarbon() {
         return paginatedLogMessageCarbon;
+    }
+
+    private static final Log log = LogFactory.getLog(LogViewerService.class);
+    private static final String LOGGING_CONFIG_FILE_WITH_PATH = CarbonUtils.getCarbonConfigDirPath()
+                                                                + RegistryConstants.PATH_SEPARATOR
+                                                                + LoggingConstants.ETC_DIR
+                                                                + RegistryConstants.PATH_SEPARATOR
+                                                                + LoggingConstants.LOGGING_CONF_FILE;
+    private static LoggingConfig loggingConfig;
+    private static LogFileProvider logFileProvider;
+    private static LogProvider logProvider;
+
+    // configured classes are loaded during LogViewer class load time
+    // inside this static block.
+    static {
+        // load the configuration from the config file.
+        loggingConfig = loadLoggingConfiguration();
+
+        String lpClass = loggingConfig.getLogProviderImplClassName();
+        loadLogProviderClass(lpClass);
+
+        String lfpClass = loggingConfig.getLogFileProviderImplClassName();
+        loadLogFileProviderClass(lfpClass);
+    }
+
+    /**
+     * Load the LogProvider implementation as mentioned in the config file. This method is called
+     * when this class is loaded. (Called within the static block)
+     *
+     * @param lpClass
+     *         - Log Provider implementation class name
+     */
+    private static void loadLogProviderClass(String lpClass) {
+        try {
+            // initiate Log provider instance
+            if (lpClass != null && !"".equals(lpClass)) {
+                Class<?> logProviderClass = Class.forName(lpClass);
+                Constructor<?> constructor = logProviderClass.getConstructor();
+                logProvider = (LogProvider) constructor.newInstance();
+                logProvider.init(loggingConfig);
+            } else {
+                String msg = "Log provider is not defined in logging configuration file : " +
+                             LOGGING_CONFIG_FILE_WITH_PATH;
+                throw new LoggingConfigReaderException(msg);
+            }
+        } catch (Exception e) {
+            String msg = "Error while loading log provider implementation class: " + lpClass;
+            log.error(msg, e);
+            // A RuntimeException is thrown here since an Exception cannot be thrown from the static
+            // block. An Exception occurs when the class could not be loaded. We cannot proceed
+            // further in that case, therefore we throw a RuntimeException.
+            throw new RuntimeException(msg, e);
+        }
+    }
+
+    /**
+     * Load the LogFileProvider implementation as mentioned in the config file. This method is
+     * called when this class is loaded. (Called within the static block)
+     *
+     * @param lfpClass
+     *         - Log File Provider implementation class name
+     */
+    private static void loadLogFileProviderClass(String lfpClass) {
+        try {
+            // initiate log file provider instance
+            if (lfpClass != null && !"".equals(lfpClass)) {
+                Class<?> logFileProviderClass = Class.forName(lfpClass);
+                Constructor<?> constructor = logFileProviderClass.getConstructor();
+                logFileProvider = (LogFileProvider) constructor.newInstance();
+                logFileProvider.init(loggingConfig);
+            } else {
+                String msg = "Log file provider is not defined in logging configuration file : " +
+                             LOGGING_CONFIG_FILE_WITH_PATH;
+                throw new LoggingConfigReaderException(msg);
+            }
+        } catch (Exception e) {
+            String msg = "Error while loading log file provider implementation class: " + lfpClass;
+            log.error(msg, e);
+            // A RuntimeException is thrown here since an Exception cannot be thrown from the static
+            // block. An Exception occurs when the class could not be loaded. We cannot proceed
+            // further in that case, therefore we throw a RuntimeException.
+            throw new RuntimeException(msg, e);
+        }
+    }
+
+    /**
+     * Load logging configuration from the logging-config file. This method is called when this
+     * class is loaded. (Called within the static block)
+     *
+     * @return - a LoggingConfig
+     */
+    private static LoggingConfig loadLoggingConfiguration() {
+        try {
+            return LoggingConfigManager.loadLoggingConfiguration(
+                    LOGGING_CONFIG_FILE_WITH_PATH);
+        } catch (IOException e) {
+            String msg = "Error while reading the configuration file";
+            log.error(msg, e);
+            // We cannot proceed further without reading the logging config properly.
+            // Therefore throw a runtime exception
+            throw new RuntimeException(msg, e);
+        } catch (XMLStreamException e) {
+            String msg = "Error while parsing the configuration file";
+            log.error(msg, e);
+            // We cannot proceed further without reading the logging config properly.
+            // Therefore throw a runtime exception
+            throw new RuntimeException(msg, e);
+        } catch (LoggingConfigReaderException e) {
+            String msg = "Error while reading the configuration file";
+            log.error(msg, e);
+            // We cannot proceed further without reading the logging config properly.
+            // Therefore throw a runtime exception
+            throw new RuntimeException(msg, e);
+        }
     }
 
     /**
