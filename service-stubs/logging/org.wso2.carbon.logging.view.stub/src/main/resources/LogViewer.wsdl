@@ -27,50 +27,6 @@
                     </xs:sequence>
                 </xs:complexType>
             </xs:element>
-            <xs:element name="getAllSystemLogs">
-                <xs:complexType>
-                    <xs:sequence/>
-                </xs:complexType>
-            </xs:element>
-            <xs:element name="getAllSystemLogsResponse">
-                <xs:complexType>
-                    <xs:sequence>
-                        <xs:element maxOccurs="unbounded" minOccurs="0" name="return" nillable="true" type="ax2245:LogEvent"/>
-                    </xs:sequence>
-                </xs:complexType>
-            </xs:element>
-            <xs:element name="getPaginatedLogFileInfo">
-                <xs:complexType>
-                    <xs:sequence>
-                        <xs:element minOccurs="0" name="pageNumber" type="xs:int"/>
-                        <xs:element minOccurs="0" name="tenantDomain" nillable="true" type="xs:string"/>
-                        <xs:element minOccurs="0" name="serviceName" nillable="true" type="xs:string"/>
-                    </xs:sequence>
-                </xs:complexType>
-            </xs:element>
-            <xs:element name="getPaginatedLogFileInfoResponse">
-                <xs:complexType>
-                    <xs:sequence>
-                        <xs:element minOccurs="0" name="return" nillable="true" type="ax2245:PaginatedLogFileInfo"/>
-                    </xs:sequence>
-                </xs:complexType>
-            </xs:element>
-            <xs:element name="getLocalLogFiles">
-                <xs:complexType>
-                    <xs:sequence>
-                        <xs:element minOccurs="0" name="pageNumber" type="xs:int"/>
-                        <xs:element minOccurs="0" name="tenantDomain" nillable="true" type="xs:string"/>
-                        <xs:element minOccurs="0" name="serverKey" nillable="true" type="xs:string"/>
-                    </xs:sequence>
-                </xs:complexType>
-            </xs:element>
-            <xs:element name="getLocalLogFilesResponse">
-                <xs:complexType>
-                    <xs:sequence>
-                        <xs:element minOccurs="0" name="return" nillable="true" type="ax2245:PaginatedLogFileInfo"/>
-                    </xs:sequence>
-                </xs:complexType>
-            </xs:element>
             <xs:element name="getPaginatedLogMessageCarbon">
                 <xs:complexType>
                     <xs:sequence/>
@@ -80,6 +36,18 @@
                 <xs:complexType>
                     <xs:sequence>
                         <xs:element minOccurs="0" name="return" nillable="true" type="ax2245:PaginatedLogMessageCarbon"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getAllSystemLogs">
+                <xs:complexType>
+                    <xs:sequence/>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getAllSystemLogsResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element maxOccurs="unbounded" minOccurs="0" name="return" nillable="true" type="ax2245:LogEvent"/>
                     </xs:sequence>
                 </xs:complexType>
             </xs:element>
@@ -217,6 +185,38 @@
                     </xs:sequence>
                 </xs:complexType>
             </xs:element>
+            <xs:element name="getPaginatedLogFileInfo">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="pageNumber" type="xs:int"/>
+                        <xs:element minOccurs="0" name="tenantDomain" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="serviceName" nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getPaginatedLogFileInfoResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="ax2245:PaginatedLogFileInfo"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getLocalLogFiles">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="pageNumber" type="xs:int"/>
+                        <xs:element minOccurs="0" name="tenantDomain" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="serverKey" nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getLocalLogFilesResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="ax2245:PaginatedLogFileInfo"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
         </xs:schema>
         <xs:schema attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://view.logging.carbon.wso2.org/xsd">
             <xs:complexType name="LogViewerException">
@@ -237,19 +237,6 @@
                     <xs:element minOccurs="0" name="tenantId" nillable="true" type="xs:string"/>
                 </xs:sequence>
             </xs:complexType>
-            <xs:complexType name="PaginatedLogFileInfo">
-                <xs:sequence>
-                    <xs:element maxOccurs="unbounded" minOccurs="0" name="logFileInfo" nillable="true" type="ax2244:LogFileInfo"/>
-                    <xs:element minOccurs="0" name="numberOfPages" type="xs:int"/>
-                </xs:sequence>
-            </xs:complexType>
-            <xs:complexType name="LogFileInfo">
-                <xs:sequence>
-                    <xs:element minOccurs="0" name="fileSize" nillable="true" type="xs:string"/>
-                    <xs:element minOccurs="0" name="logDate" nillable="true" type="xs:string"/>
-                    <xs:element minOccurs="0" name="logName" nillable="true" type="xs:string"/>
-                </xs:sequence>
-            </xs:complexType>
             <xs:complexType name="PaginatedLogMessageCarbon">
                 <xs:sequence>
                     <xs:element maxOccurs="unbounded" minOccurs="0" name="logInfo" nillable="true" type="ax2244:LogMessageCarbon"/>
@@ -268,6 +255,19 @@
                     <xs:element minOccurs="0" name="numberOfPages" type="xs:int"/>
                 </xs:sequence>
             </xs:complexType>
+            <xs:complexType name="PaginatedLogFileInfo">
+                <xs:sequence>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="logFileInfo" nillable="true" type="ax2244:LogFileInfo"/>
+                    <xs:element minOccurs="0" name="numberOfPages" type="xs:int"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="LogFileInfo">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="fileSize" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="logDate" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="logName" nillable="true" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
         </xs:schema>
     </wsdl:types>
     <wsdl:message name="clearLogsRequest">
@@ -282,17 +282,17 @@
     <wsdl:message name="LogViewerLogViewerException">
         <wsdl:part name="parameters" element="ns1:LogViewerLogViewerException"/>
     </wsdl:message>
-    <wsdl:message name="getLocalLogFilesRequest">
-        <wsdl:part name="parameters" element="ns1:getLocalLogFiles"/>
-    </wsdl:message>
-    <wsdl:message name="getLocalLogFilesResponse">
-        <wsdl:part name="parameters" element="ns1:getLocalLogFilesResponse"/>
-    </wsdl:message>
     <wsdl:message name="isFileAppenderConfiguredForSTRequest">
         <wsdl:part name="parameters" element="ns1:isFileAppenderConfiguredForST"/>
     </wsdl:message>
     <wsdl:message name="isFileAppenderConfiguredForSTResponse">
         <wsdl:part name="parameters" element="ns1:isFileAppenderConfiguredForSTResponse"/>
+    </wsdl:message>
+    <wsdl:message name="getLocalLogFilesRequest">
+        <wsdl:part name="parameters" element="ns1:getLocalLogFiles"/>
+    </wsdl:message>
+    <wsdl:message name="getLocalLogFilesResponse">
+        <wsdl:part name="parameters" element="ns1:getLocalLogFilesResponse"/>
     </wsdl:message>
     <wsdl:message name="isValidTenantDomainRequest">
         <wsdl:part name="parameters" element="ns1:isValidTenantDomain"/>
@@ -366,14 +366,14 @@
             <wsdl:output message="tns:downloadArchivedLogFilesResponse" wsaw:Action="urn:downloadArchivedLogFilesResponse"/>
             <wsdl:fault message="tns:LogViewerLogViewerException" name="LogViewerLogViewerException" wsaw:Action="urn:downloadArchivedLogFilesLogViewerLogViewerException"/>
         </wsdl:operation>
+        <wsdl:operation name="isFileAppenderConfiguredForST">
+            <wsdl:input message="tns:isFileAppenderConfiguredForSTRequest" wsaw:Action="urn:isFileAppenderConfiguredForST"/>
+            <wsdl:output message="tns:isFileAppenderConfiguredForSTResponse" wsaw:Action="urn:isFileAppenderConfiguredForSTResponse"/>
+        </wsdl:operation>
         <wsdl:operation name="getLocalLogFiles">
             <wsdl:input message="tns:getLocalLogFilesRequest" wsaw:Action="urn:getLocalLogFiles"/>
             <wsdl:output message="tns:getLocalLogFilesResponse" wsaw:Action="urn:getLocalLogFilesResponse"/>
             <wsdl:fault message="tns:LogViewerLogViewerException" name="LogViewerLogViewerException" wsaw:Action="urn:getLocalLogFilesLogViewerLogViewerException"/>
-        </wsdl:operation>
-        <wsdl:operation name="isFileAppenderConfiguredForST">
-            <wsdl:input message="tns:isFileAppenderConfiguredForSTRequest" wsaw:Action="urn:isFileAppenderConfiguredForST"/>
-            <wsdl:output message="tns:isFileAppenderConfiguredForSTResponse" wsaw:Action="urn:isFileAppenderConfiguredForSTResponse"/>
         </wsdl:operation>
         <wsdl:operation name="isValidTenantDomain">
             <wsdl:input message="tns:isValidTenantDomainRequest" wsaw:Action="urn:isValidTenantDomain"/>
@@ -441,6 +441,15 @@
                 <soap:fault use="literal" name="LogViewerLogViewerException"/>
             </wsdl:fault>
         </wsdl:operation>
+        <wsdl:operation name="isFileAppenderConfiguredForST">
+            <soap:operation soapAction="urn:isFileAppenderConfiguredForST" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
         <wsdl:operation name="getLocalLogFiles">
             <soap:operation soapAction="urn:getLocalLogFiles" style="document"/>
             <wsdl:input>
@@ -452,15 +461,6 @@
             <wsdl:fault name="LogViewerLogViewerException">
                 <soap:fault use="literal" name="LogViewerLogViewerException"/>
             </wsdl:fault>
-        </wsdl:operation>
-        <wsdl:operation name="isFileAppenderConfiguredForST">
-            <soap:operation soapAction="urn:isFileAppenderConfiguredForST" style="document"/>
-            <wsdl:input>
-                <soap:body use="literal"/>
-            </wsdl:input>
-            <wsdl:output>
-                <soap:body use="literal"/>
-            </wsdl:output>
         </wsdl:operation>
         <wsdl:operation name="isValidTenantDomain">
             <soap:operation soapAction="urn:isValidTenantDomain" style="document"/>
@@ -588,6 +588,15 @@
                 <soap12:fault use="literal" name="LogViewerLogViewerException"/>
             </wsdl:fault>
         </wsdl:operation>
+        <wsdl:operation name="isFileAppenderConfiguredForST">
+            <soap12:operation soapAction="urn:isFileAppenderConfiguredForST" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
         <wsdl:operation name="getLocalLogFiles">
             <soap12:operation soapAction="urn:getLocalLogFiles" style="document"/>
             <wsdl:input>
@@ -599,15 +608,6 @@
             <wsdl:fault name="LogViewerLogViewerException">
                 <soap12:fault use="literal" name="LogViewerLogViewerException"/>
             </wsdl:fault>
-        </wsdl:operation>
-        <wsdl:operation name="isFileAppenderConfiguredForST">
-            <soap12:operation soapAction="urn:isFileAppenderConfiguredForST" style="document"/>
-            <wsdl:input>
-                <soap12:body use="literal"/>
-            </wsdl:input>
-            <wsdl:output>
-                <soap12:body use="literal"/>
-            </wsdl:output>
         </wsdl:operation>
         <wsdl:operation name="isValidTenantDomain">
             <soap12:operation soapAction="urn:isValidTenantDomain" style="document"/>
@@ -732,8 +732,8 @@
                 <mime:content type="text/xml" part="parameters"/>
             </wsdl:output>
         </wsdl:operation>
-        <wsdl:operation name="getLocalLogFiles">
-            <http:operation location="getLocalLogFiles"/>
+        <wsdl:operation name="isFileAppenderConfiguredForST">
+            <http:operation location="isFileAppenderConfiguredForST"/>
             <wsdl:input>
                 <mime:content type="text/xml" part="parameters"/>
             </wsdl:input>
@@ -741,8 +741,8 @@
                 <mime:content type="text/xml" part="parameters"/>
             </wsdl:output>
         </wsdl:operation>
-        <wsdl:operation name="isFileAppenderConfiguredForST">
-            <http:operation location="isFileAppenderConfiguredForST"/>
+        <wsdl:operation name="getLocalLogFiles">
+            <http:operation location="getLocalLogFiles"/>
             <wsdl:input>
                 <mime:content type="text/xml" part="parameters"/>
             </wsdl:input>
