@@ -193,8 +193,7 @@ public class InMemoryLogProvider implements LogProvider {
 
     private List<LogEvent> getLogs(String appName, String tenantDomain, String serverKey) {
         List<LogEvent> resultList = new ArrayList<LogEvent>();
-        Appender appender = Logger.getRootLogger().getAppender(
-                LoggingConstants.WSO2CARBON_MEMORY_APPENDER);
+        Appender appender = new CarbonMemoryAppender();
         if (appender instanceof CarbonMemoryAppender) {
             CarbonMemoryAppender memoryAppender = (CarbonMemoryAppender) appender;
             List<TenantAwareLoggingEvent> tenantAwareLoggingEventList = getTenantAwareLoggingEventList(memoryAppender);
