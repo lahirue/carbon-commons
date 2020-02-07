@@ -222,7 +222,8 @@ public class LogViewerService {
                                                    String tenantDomain, String serverKey)
             throws LogViewerException {
 
-        List<LogEvent> logMsgList = DataHolder.getInstance().getLogBuffer().get(2000);
+        List<LogEvent> logMsgList = logProvider
+                .getLogs(type, keyword, null, tenantDomain, serverKey);
         return getPaginatedLogEvent(pageNumber, logMsgList);
     }
 
