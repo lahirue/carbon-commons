@@ -40,6 +40,7 @@ import javax.xml.stream.XMLStreamException;
 import java.io.IOException;
 import java.lang.reflect.Constructor;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Log Viewer Service
@@ -223,6 +224,8 @@ public class LogViewerService {
             throws LogViewerException {
 
         List<LogEvent> logMsgList = DataHolder.getInstance().getLogBuffer().get(2000);
+        List<LogEvent> filteredLogEventList = logMsgList.stream().filter(event-> event.getMessage().contains(keyword)).collect(
+                Collectors.toList());
         return getPaginatedLogEvent(pageNumber, logMsgList);
     }
 
