@@ -193,34 +193,7 @@ public class InMemoryLogProvider implements LogProvider {
 
     private List<LogEvent> getLogs(String appName, String tenantDomain, String serverKey) {
         List<LogEvent> resultList = new ArrayList<LogEvent>();
-        Appender appender = Logger.getRootLogger().getAppender(
-                LoggingConstants.WSO2CARBON_MEMORY_APPENDER);
-        if (appender instanceof CarbonMemoryAppender) {
-            CarbonMemoryAppender memoryAppender = (CarbonMemoryAppender) appender;
-            List<TenantAwareLoggingEvent> tenantAwareLoggingEventList = getTenantAwareLoggingEventList(memoryAppender);
-            for (TenantAwareLoggingEvent tenantAwareLoggingEvent : tenantAwareLoggingEventList) {
-                if (tenantAwareLoggingEvent != null) {
-                    TenantAwarePatternLayout tenantIdPattern = new TenantAwarePatternLayout("%T");
-                    TenantAwarePatternLayout productPattern = new TenantAwarePatternLayout("%S");
-                    String productName = productPattern.format(tenantAwareLoggingEvent);
-                    String tenantId = tenantIdPattern.format(tenantAwareLoggingEvent);
-                    if (isCurrentTenantId(tenantId, tenantDomain) && isCurrentProduct(productName, serverKey)) {
-                        if (appName == null || "".equals(appName)) {
-                            resultList.add(createLogEvent(tenantAwareLoggingEvent));
-                        } else {
-                            TenantAwarePatternLayout appPattern = new TenantAwarePatternLayout("%A");
-                            String currAppName = appPattern.format(tenantAwareLoggingEvent);
-                            if (appName.equals(currAppName)) {
-                                resultList.add(createLogEvent(tenantAwareLoggingEvent));
-                            }
-                        }
-                    }
-                }
-            }
-            return reverseLogList(resultList);
-        } else {
             return getDefaultLogEvents();
-        }
     }
 
     @Override
