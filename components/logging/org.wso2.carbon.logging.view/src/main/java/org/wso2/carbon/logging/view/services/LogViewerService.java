@@ -40,6 +40,7 @@ import javax.xml.stream.XMLStreamException;
 import java.io.IOException;
 import java.lang.reflect.Constructor;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Log Viewer Service
@@ -222,9 +223,14 @@ public class LogViewerService {
                                                    String tenantDomain, String serverKey)
             throws LogViewerException {
 
-        List<LogEvent> logMsgList = logProvider
-                .getLogs(type, keyword, null, tenantDomain, serverKey);
-        return getPaginatedLogEvent(pageNumber, logMsgList);
+//        List<LogEvent> logMsgList = logProvider
+//                .getLogs(type, keyword, null, tenantDomain, serverKey);
+        List<LogEvent> logEventList = DataHolder.getInstance().getLogBuffer().get(2000);
+        List<LogEvent> filteredLogEventList = logEventList.stream().filter(event-> event.getMessage().contains(keyword)).collect(
+                Collectors.toList());
+
+
+        return getPaginatedLogEvent(pageNumber, filteredLogEventList);
     }
 
     public PaginatedLogFileInfo getPaginatedLogFileInfo(int pageNumber, String tenantDomain,
