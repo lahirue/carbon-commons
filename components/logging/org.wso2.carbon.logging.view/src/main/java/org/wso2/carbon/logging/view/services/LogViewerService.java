@@ -39,8 +39,8 @@ import javax.activation.DataHandler;
 import javax.xml.stream.XMLStreamException;
 import java.io.IOException;
 import java.lang.reflect.Constructor;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * Log Viewer Service
@@ -224,9 +224,25 @@ public class LogViewerService {
             throws LogViewerException {
 
         List<LogEvent> logMsgList = DataHolder.getInstance().getLogBuffer().get(2000);
-        List<LogEvent> filteredLogEventList = logMsgList.stream().filter(event-> event.getMessage().contains(keyword)).collect(
-                Collectors.toList());
-        return getPaginatedLogEvent(pageNumber, logMsgList);
+        List<LogEvent> logMsgListNew = new ArrayList<LogEvent>();
+        for (LogEvent logEventItem:logMsgList) {
+            if (type != null && !type.isEmpty()) {
+                if ((keyword == null || keyword.isEmpty())) {
+                    if (logEventItem.getPriority().equals(type)) {
+                        logMsgListNew.add(logEventItem);
+                    }
+                } else if ((logEventItem.getMessage().contains(keyword) && !type.equals("ALL") && logEventItem.getPriority().equals(type))) {
+                    logMsgListNew.add(logEventItem);
+                } else if (logEventItem.getMessage().contains(keyword) && type.equals("ALL")) {
+                    logMsgListNew.add(logEventItem);
+                }
+            } else {
+                logMsgListNew.add(logEventItem);
+            }
+
+        }
+
+        return getPaginatedLogEvent(pageNumber, logMsgListNew);
     }
 
     public PaginatedLogFileInfo getPaginatedLogFileInfo(int pageNumber, String tenantDomain,
@@ -236,6 +252,7 @@ public class LogViewerService {
                                                                                serviceName);
             return getPaginatedLogFileInfo(pageNumber, logFileInfoList);
     }
+
 
     public PaginatedLogFileInfo getLocalLogFiles(int pageNumber, String tenantDomain,
                                                  String serverKey) throws LogViewerException {

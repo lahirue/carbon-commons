@@ -3,15 +3,13 @@ package org.wso2.carbon.logging.view.provider;
 import org.apache.commons.io.filefilter.WildcardFileFilter;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.apache.log4j.FileAppender;
-import org.apache.log4j.Logger;
 import org.wso2.carbon.base.ServerConfiguration;
 import org.wso2.carbon.context.CarbonContext;
 import org.wso2.carbon.context.PrivilegedCarbonContext;
-import org.wso2.carbon.logging.view.LogViewerException;
-import org.wso2.carbon.logging.view.provider.api.LogFileProvider;
 import org.wso2.carbon.logging.view.LogFileInfo;
+import org.wso2.carbon.logging.view.LogViewerException;
 import org.wso2.carbon.logging.view.LoggingConfig;
+import org.wso2.carbon.logging.view.provider.api.LogFileProvider;
 import org.wso2.carbon.logging.view.util.LoggingConstants;
 import org.wso2.carbon.utils.CarbonUtils;
 import org.wso2.carbon.utils.multitenancy.MultitenantConstants;
@@ -235,9 +233,9 @@ public class FileLogProvider implements LogFileProvider {
 					throw new LogViewerException(
 							"Specified log file path is outside carbon logs directory.");
 				}
-				FileAppender carbonLogFileAppender =
-						(FileAppender) Logger.getRootLogger().getAppender(CARBON_LOGFILE_APPENDER);
-				String carbonLogFileName = new File(carbonLogFileAppender.getFile()).getName();
+//				FileAppender carbonLogFileAppender =
+//						(FileAppender) Logger.getRootLogger().getAppender(CARBON_LOGFILE_APPENDER);
+				String carbonLogFileName = logFile;
 
 				if (!logFilePath.getFileName().toString().startsWith(carbonLogFileName)) {
 					throw new LogViewerException("Trying to access logs other than " +
